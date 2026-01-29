@@ -10,6 +10,7 @@ import com.patchwork.booklibrary.services.BookLibraryImpl
 val books = listOf(
     Book("0001", "Terry Pratchett","Weird sisters" , ISBN = "9780142428948"),
     Book("0002", "Terry Pratchett","Guards! Guards!", ISBN = "978014200001"),
+    Book("0003", "Oxford University Press","Encyclopedia of Birds", ISBN = "234567896987"),
 )
 val users = listOf(User("0001", "sally.smith"),
                   User("0002", "joe.bloggs"))

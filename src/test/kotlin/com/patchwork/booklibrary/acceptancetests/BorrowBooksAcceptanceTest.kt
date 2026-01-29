@@ -33,5 +33,12 @@ class BorrowBooksAcceptanceTest : BehaviorSpec({
             }
         }
 
+        `when`("a user tries to borrow a reference book") {
+            val borrowResult = library.borrow(user1.id, "0003")
+
+            then("the borrow will not be successful") {
+                borrowResult shouldBe BorrowResult.Failure(BorrowError.ReferenceBook)
+            }
+        }
     }
 })
