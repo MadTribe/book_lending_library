@@ -5,6 +5,6 @@ import com.patchwork.booklibrary.repositories.BooksRepository
 
 class AdminServiceImpl(val booksRepository: BooksRepository) : AdminService {
     override fun reportBorrowedBooks(): List<Book> {
-        return emptyList()
+        return booksRepository.findBorrowedBooks();
     }
 }

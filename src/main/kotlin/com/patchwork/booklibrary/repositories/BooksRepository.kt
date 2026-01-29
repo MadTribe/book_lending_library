@@ -9,4 +9,5 @@ interface BooksRepository {
     fun findBooksByLibraryItemId(id: String): Book?
     fun updateBook(new: Book)
     fun finBooksLoanedTo(userId: String): kotlin.collections.List<com.patchwork.booklibrary.model.Book>
+    fun findBorrowedBooks() : List<Book>
 }

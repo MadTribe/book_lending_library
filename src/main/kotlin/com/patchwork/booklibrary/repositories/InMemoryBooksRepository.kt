@@ -42,4 +42,8 @@ class InMemoryBooksRepository(var books : List<Book>) : BooksRepository  {
     override fun finBooksLoanedTo(userId: String): List<Book> {
        return books.filter { it.borrower?.id == userId }
     }
+
+    override fun findBorrowedBooks(): List<Book> {
+        return books.filter { it.borrower != null }
+    }
 }
