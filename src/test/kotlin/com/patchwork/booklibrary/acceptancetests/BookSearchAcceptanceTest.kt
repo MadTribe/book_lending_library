@@ -24,5 +24,12 @@ class BookSearchAcceptanceTest : BehaviorSpec({
                 results.map { it.title } shouldContain "Weird sisters"
             }
         }
+        `when`("a user searches for books by ISBN") {
+            val results = library.findBooksByISBN("9780142428948")
+
+            then("matching books are returned") {
+                results.map { it.title } shouldContain "Weird Sisters"
+            }
+        }
     }
 })
