@@ -122,8 +122,11 @@ class BookLibraryImplTest {
 
         val borrowResult2 = cut.borrow("0002", "0002" )
         assertEquals(BorrowResult.Failure(BorrowError.AlreadyBorrowed),borrowResult2)
-
-
     }
 
+    @Test
+    fun `user tries to borrow reference book error returned`(){
+        val borrowResult = cut.borrow("0002", "0003" )
+        assertEquals(BorrowResult.Failure(BorrowError.ReferenceBook),borrowResult)
+    }
 }

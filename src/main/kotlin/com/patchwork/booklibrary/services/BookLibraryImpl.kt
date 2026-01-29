@@ -25,6 +25,10 @@ class BookLibraryImpl(val booksRepository: BooksRepository, val userRepository: 
         val book = booksRepository.findBooksByLibraryItemId(libraryItemId)
            ?: return BorrowResult.Failure(BorrowError.BookNotFound)
 
+        if (book.referenceBook){
+            return BorrowResult.Failure(BorrowError.ReferenceBook)
+        }
+
         if (book.borrower != null){
             return BorrowResult.Failure(BorrowError.AlreadyBorrowed)
         }
