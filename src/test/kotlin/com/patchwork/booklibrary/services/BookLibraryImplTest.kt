@@ -47,4 +47,18 @@ class BookLibraryImplTest {
         val searchResult = cut.findBooksByTitle("WEIRd Sis")
         assertEquals(1, searchResult.size)
     }
+
+    @Test
+    fun `ISBN not known findBooksByIBN returns empty list`(){
+        val searchResult = cut.findBooksByISBN("234567890")
+        assertTrue(searchResult.isEmpty())
+    }
+
+
+    @Test
+    fun `ISBN known findBooksByISBN returns one book`(){
+        val searchResult = cut.findBooksByISBN("978014200001")
+        assertEquals(1, searchResult.size )
+        searchResult.map{ it.title } shouldContain "Guards! Guards!"
+    }
 }

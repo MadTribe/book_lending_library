@@ -16,4 +16,11 @@ class InMemoryBooksRepository(val books : List<Book>) : BooksRepository  {
                 .indexOf(title, 0, true) >= 0
         }
     }
+
+    override fun findBooksByISBN(isbn: String): List<Book> {
+        return books.filter {
+            it.ISBN
+                .indexOf(isbn, 0, true) >= 0
+        }
+    }
 }

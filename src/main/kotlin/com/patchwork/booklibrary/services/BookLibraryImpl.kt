@@ -13,6 +13,6 @@ class BookLibraryImpl(val booksRepository: BooksRepository) : BookLibrary {
     }
 
     override fun findBooksByISBN(isbn: String): List<Book> {
-        TODO("Not yet implemented")
+        return booksRepository.findBooksByISBN(isbn)
     }
 }
