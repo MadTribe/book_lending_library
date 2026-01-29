@@ -17,6 +17,7 @@ class BookLibraryImpl(val booksRepository: BooksRepository, val userRepository: 
         return booksRepository.findBooksByISBN(isbn)
     }
 
+    @Synchronized // we should not let more than one thread in the borrow func at a time.
     override fun borrow(
         userId: String,
         libraryItemId: String
