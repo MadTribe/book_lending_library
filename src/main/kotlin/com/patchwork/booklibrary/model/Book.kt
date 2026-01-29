@@ -1,6 +1,7 @@
 package com.patchwork.booklibrary.model
 
-class Book(title: Any) {
-
-    val title: Any = title
+class Book(
+    val libraryItemId: String,
+    val author: String,
+    val title: String){
 }
