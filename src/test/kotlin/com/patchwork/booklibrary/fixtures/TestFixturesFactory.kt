@@ -15,7 +15,7 @@ open class TestFixturesFactory() {
     companion object {
         fun create() : TestFixtures {
             val bookLibrary = BookLibraryImpl(InMemoryBooksRepository(books))
-            val users = listOf(User("0001", "Terry Pratchett"), User("0002", "Terry Pratchett"))
+            val users = listOf(User("0001", "sally.smith"), User("0002", "joe.bloggs"))
             return TestFixtures(bookLibrary, users)
         }
     }

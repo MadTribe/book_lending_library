@@ -17,9 +17,17 @@ class BookLibraryImpl(val booksRepository: BooksRepository) : BookLibrary {
     }
 
     override fun borrow(
-        id: String,
+        userId: String,
         libraryItemId: String
     ): BorrowResult {
+        val books= booksRepository.findBooksByLibraryItemId(libraryItemId)
+        if (books.isEmpty()) {
+            return BorrowResult.Failure(BorrowError.BookNotFound)
+        }
+        return BorrowResult.Success
+    }
+
+    override fun userLoans(userId: String): List<Book> {
         TODO("Not yet implemented")
     }
 }

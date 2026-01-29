@@ -61,4 +61,27 @@ class BookLibraryImplTest {
         assertEquals(1, searchResult.size )
         searchResult.map{ it.title } shouldContain "Guards! Guards!"
     }
+
+    @Test
+    fun `book doesnt exist borrow returns failure`(){
+        val borrowResult = cut.borrow("0002", "DOES_NOT_EXIST" )
+        when (borrowResult ){
+            is BorrowResult.Success -> {
+               fail("expected faile")
+            } else -> {
+               assertEquals(BorrowResult.Failure(BorrowError.BookNotFound), borrowResult)
+            }
+
+        }
+    }
+    @Test
+    fun `normal available book exists, borrow returns success`(){
+        val borrowResult = cut.borrow("0002", "0001" )
+        when (borrowResult ){
+            is BorrowResult.Success -> {
+            } else -> {
+                fail("Unexpected fail")
+            }
+        }
+    }
 }

@@ -6,7 +6,8 @@ interface BookLibrary {
     fun findBooksByAuthor(author: String) : List<Book>
     fun findBooksByTitle(title: String) : List<Book>
     fun findBooksByISBN(isbn: String) : List<Book>
-    fun borrow(id: String, libraryItemId: String) : BorrowResult
+    fun borrow(userId: String, libraryItemId: String) : BorrowResult
+    fun userLoans(userId: String) : List<Book>
 
 }
 sealed interface BorrowError {
