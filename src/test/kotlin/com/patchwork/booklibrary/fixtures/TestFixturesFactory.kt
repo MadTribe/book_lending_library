@@ -1,6 +1,7 @@
 package com.patchwork.booklibrary.fixtures
 
 import com.patchwork.booklibrary.model.Book
+import com.patchwork.booklibrary.model.User
 import com.patchwork.booklibrary.repositories.InMemoryBooksRepository
 import com.patchwork.booklibrary.services.BookLibrary
 import com.patchwork.booklibrary.services.BookLibraryImpl
@@ -14,8 +15,8 @@ open class TestFixturesFactory() {
     companion object {
         fun create() : TestFixtures {
             val bookLibrary = BookLibraryImpl(InMemoryBooksRepository(books))
-
-            return TestFixtures(bookLibrary)
+            val users = listOf(User("0001", "Terry Pratchett"), User("0002", "Terry Pratchett"))
+            return TestFixtures(bookLibrary, users)
         }
     }
 
@@ -25,6 +26,6 @@ open class TestFixturesFactory() {
 
 }
 
-class TestFixtures(val bookLibrary: BookLibrary) {
+class TestFixtures(val bookLibrary: BookLibrary, val users: List<User>) {
 
 }
