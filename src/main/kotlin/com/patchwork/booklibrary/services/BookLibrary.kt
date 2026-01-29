@@ -3,6 +3,7 @@ package com.patchwork.booklibrary.services
 import com.patchwork.booklibrary.model.Book
 
 interface BookLibrary {
-    fun findBooksByAuthor(string: String) : List<Book>
+    fun findBooksByAuthor(author: String) : List<Book>
+    fun findBooksByTitle(title: String) : List<Book>
 
 }

@@ -14,6 +14,14 @@ class BookSearchAcceptanceTest : BehaviorSpec({
 
             then("matching books are returned") {
                 results.map { it.title } shouldContain "Guards! Guards!"
+                results.map { it.title } shouldContain "Weird Sisters"
+            }
+        }
+        `when`("a user searches for books by title") {
+            val results = library.findBooksByTitle("Weird Sisters")
+
+            then("matching books are returned") {
+                results.map { it.title } shouldContain "Weird Sisters"
             }
         }
     }
