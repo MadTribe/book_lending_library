@@ -2,7 +2,7 @@ package com.patchwork.booklibrary.repositories
 
 import com.patchwork.booklibrary.model.Book
 
-class InMemoryBooksRepository(val books : List<Book>) : BooksRepository  {
+class InMemoryBooksRepository(var books : List<Book>) : BooksRepository  {
     override fun findBooksByAuthor(author: String): List<Book> {
         return books.filter {
             it.author
@@ -24,9 +24,22 @@ class InMemoryBooksRepository(val books : List<Book>) : BooksRepository  {
         }
     }
 
-    override fun findBooksByLibraryItemId(id: String): List<Book> {
-        return books.filter {
+
+    override fun findBooksByLibraryItemId(id: String): Book? {
+        return books.findLast {
             it.libraryItemId == id
         }
+    }
+
+    override fun updateBook(new: Book) {
+        books = books.map {
+            if (it.libraryItemId == new.libraryItemId) new else it
+         }
+
+   println(books)
+    }
+
+    override fun finBooksLoanedTo(userId: String): List<Book> {
+       return books.filter { it.borrower?.id == userId }
     }
 }

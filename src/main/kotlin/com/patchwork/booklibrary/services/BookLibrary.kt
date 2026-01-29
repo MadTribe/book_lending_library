@@ -14,6 +14,7 @@ sealed interface BorrowError {
     data object BookNotFound : BorrowError
     data object AlreadyBorrowed : BorrowError
     data object ReferenceBook : BorrowError
+    data object UnknownUser : BorrowError
 }
 
 sealed interface BorrowResult {

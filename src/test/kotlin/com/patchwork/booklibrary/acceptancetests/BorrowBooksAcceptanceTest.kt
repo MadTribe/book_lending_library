@@ -23,7 +23,7 @@ class BorrowBooksAcceptanceTest : BehaviorSpec({
             val user1Loans = library.userLoans(user1.id)
             then("the book will appear in their borrow list"){
 
-                user1Loans.map { it.title } shouldContain "Weird Sisters"
+                user1Loans.map { it.title } shouldContain "Weird sisters"
             }
 
             then("other users can't borrow the same book"){

@@ -1,8 +1,9 @@
 package com.patchwork.booklibrary.model
 
-class Book(
+data class Book(
     val libraryItemId: String,
     val author: String,
     val title: String,
-    val ISBN: String){
+    val ISBN: String,
+    val borrower: User? = null){
 }

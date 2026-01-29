@@ -2,8 +2,9 @@ package com.patchwork.booklibrary.services
 
 import com.patchwork.booklibrary.model.Book
 import com.patchwork.booklibrary.repositories.BooksRepository
+import com.patchwork.booklibrary.repositories.UserRepository
 
-class BookLibraryImpl(val booksRepository: BooksRepository) : BookLibrary {
+class BookLibraryImpl(val booksRepository: BooksRepository, val userRepository: UserRepository) : BookLibrary {
     override fun findBooksByAuthor(author: String): List<Book> {
        return booksRepository.findBooksByAuthor(author)
     }
@@ -20,14 +21,24 @@ class BookLibraryImpl(val booksRepository: BooksRepository) : BookLibrary {
         userId: String,
         libraryItemId: String
     ): BorrowResult {
-        val books= booksRepository.findBooksByLibraryItemId(libraryItemId)
-        if (books.isEmpty()) {
-            return BorrowResult.Failure(BorrowError.BookNotFound)
+        val book = booksRepository.findBooksByLibraryItemId(libraryItemId)
+           ?: return BorrowResult.Failure(BorrowError.BookNotFound)
+
+        if (book.borrower != null){
+            return BorrowResult.Failure(BorrowError.AlreadyBorrowed)
         }
+
+        val borrower = userRepository.findUserById(userId)
+            ?: return BorrowResult.Failure(BorrowError.UnknownUser)
+
+        val newBook = book.copy(borrower = borrower )
+
+        booksRepository.updateBook(newBook)
+
         return BorrowResult.Success
     }
 
     override fun userLoans(userId: String): List<Book> {
-        TODO("Not yet implemented")
+        return booksRepository.finBooksLoanedTo(userId)
     }
 }

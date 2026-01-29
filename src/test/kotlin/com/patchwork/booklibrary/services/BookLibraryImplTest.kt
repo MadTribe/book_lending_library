@@ -4,6 +4,7 @@ import com.patchwork.booklibrary.fixtures.TestFixtures
 import com.patchwork.booklibrary.fixtures.TestFixturesFactory
 import com.patchwork.booklibrary.model.Book
 import com.patchwork.booklibrary.repositories.InMemoryBooksRepository
+import com.patchwork.booklibrary.repositories.InMemoryUserRepository
 import io.kotest.matchers.collections.shouldContain
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -14,7 +15,8 @@ class BookLibraryImplTest {
     @BeforeEach
     fun setUp() {
        val booksRepository = InMemoryBooksRepository(TestFixturesFactory().books())
-       cut = BookLibraryImpl(booksRepository)
+       val userRepository = InMemoryUserRepository(TestFixturesFactory().users())
+        cut = BookLibraryImpl(booksRepository, userRepository)
     }
 
     @Test
@@ -75,6 +77,18 @@ class BookLibraryImplTest {
         }
     }
     @Test
+    fun `User doesnt exist borrow returns failure`(){
+        val borrowResult = cut.borrow("INVALID_USER", "0001" )
+        when (borrowResult ){
+            is BorrowResult.Success -> {
+                fail("expected faileid")
+            } else -> {
+            assertEquals(BorrowResult.Failure(BorrowError.UnknownUser), borrowResult)
+        }
+
+        }
+    }
+      @Test
     fun `normal available book exists, borrow returns success`(){
         val borrowResult = cut.borrow("0002", "0001" )
         when (borrowResult ){
@@ -84,4 +98,32 @@ class BookLibraryImplTest {
             }
         }
     }
+
+    @Test
+    fun `user has not borrowed book, userLoans is empty`(){
+        val borrowList = cut.userLoans("0001")
+        assertTrue(borrowList.isEmpty())
+    }
+
+
+    @Test
+    fun `user borrows book, userLoans contains borrowed book`(){
+        val borrowResult = cut.borrow("0002", "0002" )
+        assertEquals(BorrowResult.Success,borrowResult)
+        val borrowList = cut.userLoans("0002")
+        assertEquals(1, borrowList.size)
+        borrowList.map{ it.title } shouldContain "Guards! Guards!"
+    }
+
+    @Test
+    fun `user borrows book, other users can't borrow`(){
+        val borrowResult = cut.borrow("0002", "0002" )
+        assertEquals(BorrowResult.Success,borrowResult)
+
+        val borrowResult2 = cut.borrow("0002", "0002" )
+        assertEquals(BorrowResult.Failure(BorrowError.AlreadyBorrowed),borrowResult2)
+
+
+    }
+
 }
