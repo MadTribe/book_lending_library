@@ -9,4 +9,11 @@ class InMemoryBooksRepository(val books : List<Book>) : BooksRepository  {
                 .indexOf(author, 0, true) >= 0
         }
     }
+
+    override fun findBooksByTitle(title: String): List<Book> {
+        return books.filter {
+            it.title
+                .indexOf(title, 0, true) >= 0
+        }
+    }
 }

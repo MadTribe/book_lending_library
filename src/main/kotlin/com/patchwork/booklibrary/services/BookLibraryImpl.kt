@@ -9,6 +9,6 @@ class BookLibraryImpl(val booksRepository: BooksRepository) : BookLibrary {
     }
 
     override fun findBooksByTitle(title: String): List<Book> {
-        TODO("Not yet implemented")
+        return booksRepository.findBooksByTitle(title)
     }
 }

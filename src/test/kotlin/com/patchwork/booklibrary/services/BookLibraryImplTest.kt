@@ -4,6 +4,7 @@ import com.patchwork.booklibrary.fixtures.TestFixtures
 import com.patchwork.booklibrary.fixtures.TestFixturesFactory
 import com.patchwork.booklibrary.model.Book
 import com.patchwork.booklibrary.repositories.InMemoryBooksRepository
+import io.kotest.matchers.collections.shouldContain
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -31,5 +32,19 @@ class BookLibraryImplTest {
         val searchResult = cut.findBooksByAuthor("PratCHET")
 
         assertEquals(2, searchResult.size )
+        searchResult.map{ it.title } shouldContain "Guards! Guards!"
+        searchResult.map{ it.title } shouldContain "Weird sisters"
+    }
+
+    @Test
+    fun `title doesn't exist findBooksByTitle returns empty List`(){
+       val searchResult = cut.findBooksByTitle("Charlie the Choo Choo")
+        assertTrue(searchResult.isEmpty())
+    }
+
+    @Test
+    fun `title exists findBooksByTitle returns matching book`(){
+        val searchResult = cut.findBooksByTitle("WEIRd Sis")
+        assertEquals(1, searchResult.size)
     }
 }
