@@ -19,11 +19,9 @@ class InMemoryBooksRepository(var books : List<Book>) : BooksRepository  {
 
     override fun findBooksByISBN(isbn: String): List<Book> {
         return books.filter {
-            it.ISBN
-                .indexOf(isbn, 0, true) >= 0
+            it.ISBN == isbn
         }
     }
-
 
     override fun findBooksByLibraryItemId(id: String): Book? {
         return books.findLast {
@@ -35,11 +33,9 @@ class InMemoryBooksRepository(var books : List<Book>) : BooksRepository  {
         books = books.map {
             if (it.libraryItemId == new.libraryItemId) new else it
          }
-
-   println(books)
     }
 
-    override fun finBooksLoanedTo(userId: String): List<Book> {
+    override fun findBooksLoanedTo(userId: String): List<Book> {
        return books.filter { it.borrower?.id == userId }
     }
 

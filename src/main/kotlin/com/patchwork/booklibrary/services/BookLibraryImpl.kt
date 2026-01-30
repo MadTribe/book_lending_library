@@ -63,6 +63,6 @@ class BookLibraryImpl(val booksRepository: BooksRepository, val userRepository: 
 
     override fun userLoans(userId: String): List<Book> {
         logger.debug("userLoans {}", userId)
-        return booksRepository.finBooksLoanedTo(userId)
+        return booksRepository.findBooksLoanedTo(userId)
     }
 }

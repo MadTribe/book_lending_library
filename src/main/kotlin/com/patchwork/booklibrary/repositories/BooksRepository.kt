@@ -7,7 +7,8 @@ interface BooksRepository {
     fun findBooksByTitle(title: String): List<Book>
     fun findBooksByISBN(isbn: String): List<Book>
     fun findBooksByLibraryItemId(id: String): Book?
-    fun updateBook(new: Book)
-    fun finBooksLoanedTo(userId: String): kotlin.collections.List<com.patchwork.booklibrary.model.Book>
+    fun findBooksLoanedTo(userId: String): kotlin.collections.List<com.patchwork.booklibrary.model.Book>
     fun findBorrowedBooks() : List<Book>
+
+    fun updateBook(new: Book)
 }
