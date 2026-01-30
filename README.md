@@ -23,21 +23,23 @@ As per the requirements no user interface is provided.
 The logic is exposed through acceptance and unit tests which together provide 100% line coverage.
 It is also assumed that user authentication and authorisation would be implemented outside this logic
 
-## To build 
+## To build
+
 ./gradlew build
 
 # To Run and View Tests
+
 ./gradlew cleanTest test && open build/reports/tests/test/index.html
 
 ## Missing Features
-User Management: adding and deleting users
-Book Management: adding books to the data store
-Loan limits: time/number of books per borrower.
-Pagination of search and report results.
-Loans: Returning books
-Persistent storage: e.g. PostgreSQL or Sqlite.
-Any form of user interface. 
-Any form of API
-User authentication authorisation. 
-CI/CD deployment etc.
 
+1. User Management: adding and deleting users
+2. Book Management: adding books to the data store
+3. Loan limits: time/number of books per borrower.
+4. Pagination of search and report results.
+5. Loans: Returning books
+6. Persistent storage: e.g. PostgreSQL or Sqlite.
+7. Any form of user interface. 
+8. Any form of API
+9. User authentication/authorization. 
+10. CI/CD deployment etc.
