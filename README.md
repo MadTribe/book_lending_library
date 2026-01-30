@@ -1,6 +1,6 @@
 # Introduction
 
-Coding take-home task for Patchwork, provides basic simulation of a book lending library in kotlin.
+Coding take-home task for Pxtchwxxk, provides basic simulation of a book lending library in kotlin.
 
 ## Requirements
 
@@ -23,11 +23,14 @@ As per the requirements no user interface is provided.
 The logic is exposed through acceptance and unit tests which together provide 100% line coverage.
 It is also assumed that user authentication and authorisation would be implemented outside this logic
 
+## System Requirements
+Code was written and tested against JDK version 21 and Kotlin JVM 2.3.0
+
 ## To build
 
 ./gradlew build
 
-# To Run and View Tests
+## To Run and View Tests
 
 ./gradlew cleanTest test && open build/reports/tests/test/index.html
 
@@ -43,3 +46,4 @@ It is also assumed that user authentication and authorisation would be implement
 8. Any form of API
 9. User authentication/authorization. 
 10. CI/CD deployment etc.
+11. Static analysis/security/standards tools not included sonar/snyk etc. 
