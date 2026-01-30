@@ -1,3 +1,5 @@
+Author: Paul Smout
+
 # Introduction
 
 Coding take-home task for Pxtchwxxk, provides basic simulation of a book lending library in kotlin.
