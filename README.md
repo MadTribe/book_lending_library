@@ -32,6 +32,8 @@ It is also assumed that user authentication and authorisation would be implement
 ## Missing Features
 User Management: adding and deleting users
 Book Management: adding books to the data store
+Loan limits: time/number of books per borrower.
+Pagination of search and report results.
 Loans: Returning books
 Persistent storage: e.g. PostgreSQL or Sqlite.
 Any form of user interface. 
