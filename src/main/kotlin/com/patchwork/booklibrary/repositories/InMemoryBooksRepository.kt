@@ -42,6 +42,19 @@ class InMemoryBooksRepository(var books: List<Book>) : BooksRepository {
             it.ISBN == isbn
         }
     }
+    fun findBooksByAuthorV1(author: String): List<Book> {
+        return books.filter {
+            it.author
+                .indexOf(author, 0, true) >= 0
+        }
+    }
+
+    fun findBooksByTitleV1(title: String): List<Book> {
+        return books.filter {
+            it.title
+                .indexOf(title, 0, true) >= 0
+        }
+    }
 
     override fun findBooksByLibraryItemId(id: String): Book? {
         return books.findLast {
